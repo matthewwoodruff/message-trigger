@@ -35,7 +35,7 @@ void trigger(int message, int flashes) {
 }
 
 void wait(int minutes) {
-  delay(10000);
+  delay(MINUTES_BETWEEN_MESSAGES * 60000);
 }
 
 void loop() {
