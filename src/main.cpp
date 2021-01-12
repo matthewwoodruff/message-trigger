@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
-int MINUTES_BETWEEN_MESSAGES = 10;
+int MINUTES_BETWEEN_MESSAGES = 20;
+int MESSAGES_TO_RUN = 1;
 
 int MESSAGE_1 = 3;
 int MESSAGE_2 = 5;
@@ -8,11 +9,10 @@ int MESSAGE_3 = 7;
 int MESSAGE_4 = 9;
 
 #define NUMBER_OF_MESSAGES 4
-
 int messages[NUMBER_OF_MESSAGES] = {MESSAGE_1, MESSAGE_2, MESSAGE_3, MESSAGE_4};
 
 void setup() {
-  for (int i = 0; i < NUMBER_OF_MESSAGES; i++) {
+  for (int i = 0; i < MESSAGES_TO_RUN; i++) {
     pinMode(messages[i], OUTPUT);
   } 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -35,11 +35,11 @@ void trigger(int message, int flashes) {
 }
 
 void wait(int minutes) {
-  delay(MINUTES_BETWEEN_MESSAGES * 60000);
+  delay(minutes * 60000);
 }
 
 void loop() {
-  for (int i = 0; i < NUMBER_OF_MESSAGES; i++) {
+  for (int i = 0; i < MESSAGES_TO_RUN; i++) {
     trigger(messages[i], i + 1);   
     wait(MINUTES_BETWEEN_MESSAGES);
   }                    
